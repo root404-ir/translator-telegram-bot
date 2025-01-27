@@ -3,8 +3,8 @@ const homeMenu = (bot, chatId) => {
         reply_markup: {
             inline_keyboard: [
                 [
-                    { text: 'ترجمه با Google(🇺🇸)', callback_data: "/microsoft" },
-                    { text: 'ترجمه با Microsoft(🇺🇸)', callback_data: "/google" }
+                    { text: 'ترجمه با Google(🇺🇸)', callback_data: "google" },
+                    { text: 'ترجمه با Microsoft(🇺🇸)', callback_data: "microsoft" }
                 ]
             ]
         }
