@@ -1,3 +1,26 @@
+const redis = require('redis')
+const client = redis.createClient()
+client.connect()
+/**
+* Sends a translated keyboard to a user.
+* @param {object} bot - The Telegram bot instance.
+* @param {number} chatId - Chat ID of the user.
+* @param {string} field - A string field to store in Redis.
+* @param {string} command - The command to be stored.
+* @param {object} keyboard - Inline keyboard markup.
+* @param {string} textMessage - The message text.
+* @param {number} messageId - The ID of the message to edit.
+*/
+const sendTranslateKeyboard = (bot, chatId, field, command, keyboard, textMessage, messageId) => {
+    client.set(`user:${chatId}:${field}`, command)
+    const inline_keyboard = keyboard
+    bot.editMessageText(textMessage, {
+        chat_id: chatId,
+        message_id: messageId,
+        reply_markup: inline_keyboard.reply_markup
+    })
+}
+
 const homeMenu = (bot, chatId) => {
     const inlineKeyboard = {
         reply_markup: {
@@ -11,4 +34,4 @@ const homeMenu = (bot, chatId) => {
     }
     bot.sendMessage(chatId, 'سلام به ربات لکسو خوش آمدید \n \n برای ادامه لطفا موتور ترجمه خودرا انتخاب کنید', inlineKeyboard)
 }
-export default {homeMenu}
+module.exports = { homeMenu, sendTranslateKeyboard }
