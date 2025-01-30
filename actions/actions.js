@@ -11,7 +11,7 @@ client.connect()
 * @param {string} textMessage - The message text.
 * @param {number} messageId - The ID of the message to edit.
 */
-const sendTranslateKeyboard = (bot, chatId, field, command, keyboard, textMessage, messageId) => {
+const sendTranslateKeyboard = (bot, chatId, field, command, keyboard, textMessage, messageId, actionsCommand) => {
     client.set(`user:${chatId}:${field}`, command)
     const inline_keyboard = keyboard
     bot.editMessageText(textMessage, {
