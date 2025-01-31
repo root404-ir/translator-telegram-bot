@@ -20,7 +20,10 @@ const sendTranslateKeyboard = (bot, chatId, field, command, keyboard, textMessag
         reply_markup: inline_keyboard.reply_markup
     })
 }
-
+const sendLanguage = (bot, chatId, lange, message) => {
+    client.set(`user:${chatId}:lang`, lange)
+    bot.sendMessage(chatId, message)
+}
 const homeMenu = (bot, chatId) => {
     const inlineKeyboard = {
         reply_markup: {
@@ -34,4 +37,4 @@ const homeMenu = (bot, chatId) => {
     }
     bot.sendMessage(chatId, 'سلام به ربات لکسو خوش آمدید \n \n برای ادامه لطفا موتور ترجمه خودرا انتخاب کنید', inlineKeyboard)
 }
-module.exports = { homeMenu, sendTranslateKeyboard }
+module.exports = { homeMenu, sendTranslateKeyboard, sendLanguage }
